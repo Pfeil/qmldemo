@@ -3,21 +3,30 @@ use qmetaobject::*;
 
 use std::ffi::CStr;
 
-qrc!(my_ressource,
-    "demo/" {
-        "gui/main.qml",
+qrc!(gui,
+    "demo/qml" {
+        "gui/main.qml" as "main.qml",
     },
 );
 
+#[derive(QObject, Default)]
+struct Todos {
+    base: qt_base_class!(trait QObject),
+}
+
+fn register_all_types_in_qml() {
+    qml_register_type::<Todos>(
+        CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
+        1, // major version
+        0, // minor version
+        CStr::from_bytes_with_nul(b"Todos\0").unwrap(), // type name
+    );
+}
+
 fn main() {
-    my_ressource();
-    //qml_register_type::<implementation::Todos>(
-    //    CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
-    //    1, // major version
-    //    0, // minor version
-    //    CStr::from_bytes_with_nul(b"Todos\0").unwrap(), 
-    //);
+    gui();
+    register_all_types_in_qml();
     let mut engine = QmlEngine::new();
-    engine.load_file("qrc:/demo/gui/main.qml".into());
+    engine.load_file("qrc:/demo/qml/main.qml".into());
     engine.exec();
 }
