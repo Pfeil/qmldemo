@@ -1,0 +1,8 @@
+[package]
+name = "qmldemo"
+version = "0.1.0"
+authors = ["Andreas Pfeil <der.anderas.pfeil@googlemail.com>"]
+edition = "2018"
+
+[dependencies]
+qmetaobject = "0.0.5"
