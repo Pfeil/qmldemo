@@ -1,6 +1,5 @@
 extern crate qmetaobject;
 use qmetaobject::*;
-
 use std::ffi::CStr;
 
 qrc!(gui,
@@ -10,16 +9,16 @@ qrc!(gui,
 );
 
 #[derive(QObject, Default)]
-struct Todos {
+struct DataStructure {
     base: qt_base_class!(trait QObject),
 }
 
 fn register_all_types_in_qml() {
-    qml_register_type::<Todos>(
+    qml_register_type::<DataStructure>(
         CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
         1, // major version
         0, // minor version
-        CStr::from_bytes_with_nul(b"Todos\0").unwrap(), // type name
+        CStr::from_bytes_with_nul(b"DataStructure\0").unwrap(), // type name
     );
 }
 
