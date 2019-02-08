@@ -5,6 +5,8 @@ use std::ffi::CStr;
 qrc!(gui,
     "demo/qml" {
         "gui/main.qml" as "main.qml",
+        "gui/HelloTab.qml" as "HelloTab.qml",
+        "gui/ListTab.qml" as "ListTab.qml",
     },
 );
 
@@ -25,6 +27,7 @@ fn register_all_types_in_qml() {
 fn main() {
     gui();
     register_all_types_in_qml();
+    QQuickStyle::set_style("Material");  // use googles material design
     let mut engine = QmlEngine::new();
     engine.load_file("qrc:/demo/qml/main.qml".into());
     engine.exec();

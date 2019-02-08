@@ -1,25 +1,38 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
-//import QtQuick.Layouts 1.3
+import QtQuick.Layouts 1.3
 import RustCode 1.0;
+//import "folder/HelloTab.qml"
 
 ApplicationWindow {
     id: window
     visible: true
-    width: 400
+    width: 600
     height: 200
-    title: "Qml Demo"
-    Rectangle {
-        anchors.fill: parent
-        color: "steelblue"
+    title: "QML Demo"
 
-        Text {
-            text: "Hello, World!"
-            anchors.centerIn: parent
-            font.pointSize: 38
+    header: TabBar {
+        id: bar
+        width: parent.width
+        TabButton {
+            text: qsTr("Hello, World")
         }
-
-        // Instance of our Rust struct!
-        DataStructure {}
+        TabButton {
+            text: qsTr("List")
+        }
+        TabButton {
+            text: qsTr("Grid")
+        }
+        TabButton {
+            text: qsTr("Interaction")
+        }
     }
+
+    StackLayout {
+        anchors.fill: parent
+        currentIndex: bar.currentIndex // Connection to TabBar!
+        HelloTab {}
+        ListTab {}
+    }
+
 }
