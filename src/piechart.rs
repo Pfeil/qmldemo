@@ -2,10 +2,8 @@
 //! [example]: https://doc.qt.io/qt-5/qtqml-tutorials-extending-qml-example.html
 use crate::cpp::*;
 use crate::qmetaobject::qtdeclarative::{QQuickItem, QQuickPaintedItem};
-use crate::qmetaobject::qttypes::{QPen, QPainter};
+use crate::qmetaobject::qttypes::{QPainter, QPen, QColor};
 use crate::qmetaobject::*;
-
-use qmetaobject::qttypes::QColor;
 
 #[derive(Default, QObject)]
 pub struct PieChart {
@@ -15,9 +13,7 @@ pub struct PieChart {
 
 impl QQuickItem for PieChart {}
 
-impl QQuickPaintedItem for PieChart {
-    
-}
+impl QQuickPaintedItem for PieChart {}
 
 //painter->setPen(pen);
 //painter.setRenderHints(QPainter::Antialiasing, true);
