@@ -16,6 +16,7 @@ qrc!(gui,
         "gui/main.qml" as "main.qml",
         "gui/HelloTab.qml" as "HelloTab.qml",
         "gui/ListTab.qml" as "ListTab.qml",
+        "gui/GridTab.qml" as "GridTab.qml",
         "gui/PieChartTab.qml" as "PieChartTab.qml",
     },
 );
@@ -24,7 +25,7 @@ qrc!(gui,
 struct DataStructure {
     base: qt_base_class!(trait QObject),
     name: qt_property!(QString;),
-    color: qt_property!(QColor;),
+    color: qt_property!(QColor;), // possibilities: qt_property!(QColor; READ get_color WRITE set_color NOTIFY color_changed)
 }
 
 fn register_all_types_in_qml() {

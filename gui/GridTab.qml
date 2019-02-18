@@ -4,7 +4,7 @@ import QtQuick.Layouts 1.3
 import RustCode 1.0;
 
 Item {
-    id: listTab
+    id: gridTab
 
     // This model was initialized in main.qml this way:
     //CheckList {
@@ -15,18 +15,17 @@ Item {
     //    }
     //}
 
-    ListView {
-        anchors.horizontalCenter: parent.horizontalCenter
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        width: 200
+    GridView {
+        id: grid
+        anchors.fill: parent
         
-        orientation: ListView.Vertical
         model: items
+        cellHeight: 200
+        cellWidth: 200
         delegate: Component {
             Rectangle {
-                height: 100
-                width: 200
+                height: grid.cellHeight
+                width: grid.cellWidth
                 color: "steelblue"
                 CheckBox {
                     anchors.fill: parent

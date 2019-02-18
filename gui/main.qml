@@ -31,12 +31,30 @@ ApplicationWindow {
         }
     }
 
+    // Our useless Rust struct.
+    DataStructure {
+        name: "Useless."
+        color: "red" // default color palette, "implicit cast" to QColor type.
+    }
+
+    // Another useless Rust struct with default values. This is always allowed in QML.
+    // This is why deriving Default is needed.
+    DataStructure {}
+
+    // Our Rust List Model.
+    CheckList {
+        id: items
+        Component.onCompleted: {
+            init()
+        }
+    }
+
     StackLayout {
         anchors.fill: parent
         currentIndex: bar.currentIndex // Connection to TabBar!
         HelloTab {}
         ListTab {}
-        HelloTab {}
+        GridTab {}
         HelloTab {}
         PieChartTab {}
     }
