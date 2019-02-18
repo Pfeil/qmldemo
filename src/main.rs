@@ -1,8 +1,12 @@
 #![recursion_limit = "256"]
 
+#[macro_use]
 extern crate cpp;
 extern crate qmetaobject;
 mod piechart;
+//mod pieslice;
+mod checklist;
+use checklist::CheckList;
 use piechart::PieChart;
 use qmetaobject::*;
 use std::ffi::CStr;
@@ -19,6 +23,8 @@ qrc!(gui,
 #[derive(QObject, Default)]
 struct DataStructure {
     base: qt_base_class!(trait QObject),
+    name: qt_property!(QString;),
+    color: qt_property!(QColor;),
 }
 
 fn register_all_types_in_qml() {
@@ -27,6 +33,12 @@ fn register_all_types_in_qml() {
         1,                                                 // major version
         0,                                                 // minor version
         CStr::from_bytes_with_nul(b"DataStructure\0").unwrap(), // type name
+    );
+    qml_register_type::<CheckList>(
+        CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
+        1,                                                 // major version
+        0,                                                 // minor version
+        CStr::from_bytes_with_nul(b"CheckList\0").unwrap(), // type name
     );
     qml_register_type::<PieChart>(
         CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
