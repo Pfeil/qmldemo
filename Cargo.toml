@@ -6,7 +6,10 @@ edition = "2018"
 
 [dependencies]
 qmetaobject = "*"
-cpp = "0.5.1"
+cpp = "*"
+
+[build-dependencies]
+cpp_build = "*"
 
 [patch.crates-io]
 qmetaobject = { path = "../qmetaobject-rs/qmetaobject" }

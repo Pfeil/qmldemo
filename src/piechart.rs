@@ -4,7 +4,8 @@ use crate::qmetaobject::qpainter::{QPainter, QPen};
 use crate::qmetaobject::qtdeclarative::{QQuickItem, QQuickPaintedItem};
 use crate::qmetaobject::qttypes::{QColor, QString};
 use crate::qmetaobject::*;
-//pub use self::pieslice::PieSlice;
+pub use crate::pieslice::PieSlice;
+use std::cell::RefCell;
 
 #[allow(non_snake_case)]
 #[derive(Default, QObject)]
@@ -12,34 +13,34 @@ pub struct PieChart {
     base: qt_base_class!(trait QQuickPaintedItem),
 
     // Q_PROPERTY(PieSlice* pieSlice READ pieSlice WRITE setPieSlice)
-    //pieslice: qt_property!(PieSlice; WRITE set_pieslice),
-    color: qt_property!(QColor; READ get_color WRITE set_color NOTIFY colorChanged),
+    pieslice: qt_property!(RefCell<PieSlice>; WRITE set_pieslice),
+    color: qt_property!(QColor; WRITE set_color NOTIFY colorChanged),
     name: qt_property!(QString;),
 
     colorChanged: qt_signal!(),
 }
 
 impl PieChart {
-    fn get_color(&self) -> QColor {
-        return self.color;
-    }
     fn set_color(&mut self, new_color: QColor) {
         if new_color != self.color {
             self.color = new_color;
-            self.update(None); // paint again (None = everything)
+            self.update(None); // paint again (None = everything, alternative: Some(QRect))
             self.colorChanged(); // emit colorChanged signal, catch in QML with "onColorChanged"
         }
     }
-    //fn set_pieslice(&mut self, pieslice: PieSlice) {
-    //    // TODO pieslice.set_parent_item(self);
-    //    let pie_obj = &pieslice.get_cpp_object();
-    //    let self_obj = self.get_cpp_object();
-    //
-    //    //cpp!(unsafe [pie_obj as "QQuickItem*", self_obj as "QQuickItem"] {
-    //    //    pie_obj->setParentItem(self_obj);
-    //    //});
-    //    self.pieslice = pieslice;
-    //}
+    fn set_pieslice(&mut self, mut pieslice: RefCell<PieSlice>) {
+        {
+            let slice_obj = pieslice.get_mut().get_cpp_object();
+            let self_obj = self.get_cpp_object();
+            // TODO pieslice.set_parent_item(self);
+            //unsafe {
+            //    cpp!( unsafe [self_obj as "QQuickPaintedItem*", slice_obj as "QQuickPaintedItem*"] {
+            //        slice_obj->setParentItem(self_obj);
+            //    });
+            //}
+        }
+        self.pieslice = pieslice;
+    }
 }
 
 impl QQuickItem for PieChart {}

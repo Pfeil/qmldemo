@@ -11,17 +11,6 @@ pub struct PieSlice {
     color: qt_property!(QColor;)
 }
 
-impl Clone for PieSlice {
-    fn clone(&self) -> PieSlice {
-        PieSlice {
-            base: self.base.clone(), // FIXME clone does not exist.
-            color: QColor::from_rgb_f(0., 0., 0.),
-        }
-    }
-}
-
-impl QMetaType for PieSlice {}
-
 impl QQuickItem for PieSlice {}
 
 impl QQuickPaintedItem for PieSlice {

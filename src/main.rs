@@ -3,11 +3,14 @@
 #[macro_use]
 extern crate cpp;
 extern crate qmetaobject;
+
 mod piechart;
-//mod pieslice;
+mod pieslice;
 mod checklist;
 use checklist::CheckList;
 use piechart::PieChart;
+use pieslice::PieSlice;
+
 use qmetaobject::*;
 use std::ffi::CStr;
 
@@ -42,6 +45,12 @@ fn register_all_types_in_qml() {
         1,                                                 // major version
         0,                                                 // minor version
         CStr::from_bytes_with_nul(b"CheckList\0").unwrap(), // type name
+    );
+    qml_register_type::<PieSlice>(
+        CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
+        1,                                                 // major version
+        0,                                                 // minor version
+        CStr::from_bytes_with_nul(b"PieSlice\0").unwrap(), // type name
     );
     qml_register_type::<PieChart>(
         CStr::from_bytes_with_nul(b"RustCode\0").unwrap(), // qml module name
