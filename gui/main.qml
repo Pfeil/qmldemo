@@ -7,8 +7,8 @@ import RustCode 1.0;
 ApplicationWindow {
     id: window
     visible: true
-    width: 1024
-    height: 400
+    width: 800
+    height: 500
     title: "QML Demo"
 
     header: TabBar {
@@ -52,10 +52,10 @@ ApplicationWindow {
     StackLayout {
         anchors.fill: parent
         currentIndex: bar.currentIndex // Connection to TabBar!
-        HelloTab {}
-        ListTab {}
-        GridTab {}
-        HelloTab {}
+        HelloTab {}  // index 0
+        ListTab {}   // index 1
+        GridTab {}   // ...
+        InteractionTab {}
         PieChartTab {}
     }
 

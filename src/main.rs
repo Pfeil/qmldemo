@@ -17,6 +17,8 @@ qrc!(gui,
         "gui/HelloTab.qml" as "HelloTab.qml",
         "gui/ListTab.qml" as "ListTab.qml",
         "gui/GridTab.qml" as "GridTab.qml",
+        "gui/MyNode.qml" as "MyNode.qml",
+        "gui/InteractionTab.qml" as "InteractionTab.qml",
         "gui/PieChartTab.qml" as "PieChartTab.qml",
     },
 );
