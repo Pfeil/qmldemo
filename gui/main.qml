@@ -38,7 +38,7 @@ ApplicationWindow {
         ListTab {}
         HelloTab {}
         HelloTab {}
-        PieChart {}
+        PieChartTab {}
     }
 
 }

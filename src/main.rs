@@ -12,7 +12,7 @@ qrc!(gui,
         "gui/main.qml" as "main.qml",
         "gui/HelloTab.qml" as "HelloTab.qml",
         "gui/ListTab.qml" as "ListTab.qml",
-        "gui/PieChart.qml" as "PieChart.qml",
+        "gui/PieChartTab.qml" as "PieChartTab.qml",
     },
 );
 

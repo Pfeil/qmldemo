@@ -5,10 +5,19 @@ import RustCode 1.0;
 
 Item {
     id: listTab
+
+    CheckList {
+        id: items
+        // Represents the model for the given List
+        Component.onCompleted: {
+            init()
+        }
+    }
+
     ListView {
         anchors.fill: parent
         orientation: ListView.Horizontal
-        model: ["red", "green", "blue", "yellow", "pink", "lightgray", "violet", "red", "green", "blue", "yellow", "pink", "lightgray", "violet", "red", "green", "blue", "yellow", "pink", "lightgray", "violet", "red", "green", "blue", "yellow", "pink", "lightgray", "violet", "red", "green", "blue", "yellow", "pink", "lightgray", "violet"]
+        model: items
         delegate: Component {
             Rectangle {
                 height: 50
@@ -20,7 +29,7 @@ Item {
                 color: modelData
                 Text {
                     anchors.centerIn: parent
-                    text: index
+                    text: name
                 }
             }
         }
