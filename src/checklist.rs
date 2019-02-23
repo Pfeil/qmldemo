@@ -9,7 +9,6 @@ struct ListItem {
     isChecked: bool,
 }
 
-
 #[allow(non_snake_case)]
 #[derive(Default, QObject)]
 pub struct CheckList {
@@ -17,7 +16,8 @@ pub struct CheckList {
 
     list: Vec<ListItem>,
     init: qt_method!(fn(&mut self)),
-    setCompleted: qt_method!(fn(&mut self, index: usize, status: bool) -> bool),}
+    setCompleted: qt_method!(fn(&mut self, index: usize, status: bool) -> bool),
+}
 
 impl CheckList {
     fn init(&mut self) {

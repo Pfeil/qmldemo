@@ -1,6 +1,6 @@
+use crate::qmetaobject::qpainter::{QPainter, QPen};
 use crate::qmetaobject::qtdeclarative::{QQuickItem, QQuickPaintedItem};
 use crate::qmetaobject::qttypes::{QColor, QString};
-use crate::qmetaobject::qpainter::{QPainter, QPen};
 use crate::qmetaobject::*;
 
 #[allow(non_snake_case)]
@@ -8,7 +8,7 @@ use crate::qmetaobject::*;
 pub struct PieSlice {
     base: qt_base_class!(trait QQuickPaintedItem),
     // Q_PROPERTY(QColor color READ color WRITE setColor)
-    color: qt_property!(QColor;)
+    color: qt_property!(QColor;),
 }
 
 impl QQuickItem for PieSlice {}

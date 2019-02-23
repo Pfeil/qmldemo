@@ -4,9 +4,9 @@
 extern crate cpp;
 extern crate qmetaobject;
 
+mod checklist;
 mod piechart;
 mod pieslice;
-mod checklist;
 use checklist::CheckList;
 use piechart::PieChart;
 use pieslice::PieSlice;

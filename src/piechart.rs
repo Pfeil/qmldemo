@@ -1,10 +1,10 @@
 //! Implements the piechart [example].
 //! [example]: https://doc.qt.io/qt-5/qtqml-tutorials-extending-qml-example.html
+pub use crate::pieslice::PieSlice;
 use crate::qmetaobject::qpainter::{QPainter, QPen};
 use crate::qmetaobject::qtdeclarative::{QQuickItem, QQuickPaintedItem};
 use crate::qmetaobject::qttypes::{QColor, QString};
 use crate::qmetaobject::*;
-pub use crate::pieslice::PieSlice;
 use std::cell::RefCell;
 
 #[allow(non_snake_case)]
